@@ -1,0 +1,36 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+.vscode/
+.nova/
+.zed/
+.codex
+.cursor/
+
+# Laravel
+.env
+.env.backup
+.env.production
+vendor/
+node_modules/
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+*.log
+.phpunit.result.cache
+.phpactor.json
+/auth.json
+_ide_helper.php
+Homestead.json
+Homestead.yaml
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/next-env.d.ts
