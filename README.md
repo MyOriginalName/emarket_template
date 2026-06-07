@@ -1,121 +1,121 @@
 # eMarket
 
-Single-seller e-commerce platform built with **Laravel 13** (REST API) + **Next.js 16** (React SPA).
+Однопродавцовая e-commerce платформа на **Laravel 13** (REST API) + **Next.js 16** (React SPA).
 
-## Structure
+## Структура
 
 ```
 emarket/
-├── app/               # Laravel application
-├── bootstrap/         # Laravel bootstrapping
-├── config/            # Laravel configuration
-├── database/          # Migrations, factories, seeders
+├── app/               # Laravel приложение
+├── bootstrap/         # Загрузчик Laravel
+├── config/            # Конфигурация Laravel
+├── database/          # Миграции, фабрики, сидеры
 ├── frontend/          # Next.js SPA
-├── public/            # Laravel public directory
-├── routes/            # API routes
-├── storage/           # Laravel storage
-├── tests/             # PHP tests
+├── public/            # Публичная директория Laravel
+├── routes/            # API маршруты
+├── storage/           # Хранилище Laravel
+├── tests/             # PHP тесты
 ├── artisan            # Laravel CLI
-├── composer.json      # PHP dependencies
-├── package.json       # Root orchestration scripts
-└── .env               # Environment configuration
+├── composer.json      # PHP зависимости
+├── package.json       # Корневые скрипты
+└── .env               # Конфигурация окружения
 ```
 
-## Requirements
+## Требования
 
 - PHP 8.3+
 - Composer 2
 - Node.js 20+
 - MySQL 8+
-- OpenSSL (for Laravel key generation)
+- OpenSSL (для генерации ключа Laravel)
 
-## Setup
+## Установка
 
 ```bash
-# 1. Install PHP dependencies
+# 1. Установка PHP зависимостей
 composer install
 
-# 2. Environment configuration
+# 2. Конфигурация окружения
 cp .env.example .env
-# Edit .env with your database credentials (DB_DATABASE, DB_USERNAME, DB_PASSWORD)
+# Отредактируйте .env: укажите данные БД (DB_DATABASE, DB_USERNAME, DB_PASSWORD)
 
-# 3. Generate application key
+# 3. Генерация ключа приложения
 php artisan key:generate
 
-# 4. Install frontend dependencies
+# 4. Установка зависимостей фронтенда
 cd frontend
 npm install
 cd ..
 
-# 5. Create database and run migrations with demo data
+# 5. Создание БД и запуск миграций с демо-данными
 php artisan migrate --seed
 
-# 6. Create storage symlink
+# 6. Создание симлинка для storage
 php artisan storage:link
 ```
 
-## Development
+## Запуск (разработка)
 
-Start both servers with a single command:
+Запуск обоих серверов одной командой:
 
 ```bash
 npm run dev
 ```
 
-Or start them individually:
+Или по отдельности:
 
 ```bash
-# Backend only (Laravel API on http://localhost:8000)
+# Бэкенд (Laravel API на http://localhost:8000)
 php artisan serve --port=8000
 
-# Frontend only (Next.js on http://localhost:3000)
+# Фронтенд (Next.js на http://localhost:3000)
 cd frontend && npm run dev
 ```
 
-## Credentials (Demo Data)
+## Учётные записи (демо-данные)
 
-| Role  | Email               | Password |
-|-------|---------------------|----------|
-| Admin | admin@emarket.local | password |
-| User  | user@emarket.local  | password |
+| Роль  | Email               | Пароль    |
+|-------|---------------------|-----------|
+| Админ | admin@emarket.local | password  |
+| Пользователь | user@emarket.local  | password  |
 
-## Coupons (Demo)
+## Купоны (демо)
 
-| Code     | Type    | Discount |
-|----------|---------|----------|
-| WELCOME10 | percent | 10%      |
-| FIXED500  | fixed   | 500₽     |
+| Код       | Тип      | Скидка    |
+|-----------|----------|-----------|
+| WELCOME10 | percent  | 10%       |
+| FIXED500  | fixed    | 500₽      |
 
-## Tech Stack
+## Технологии
 
-### Backend (Laravel)
-- Laravel 13 with Sanctum Bearer-token auth
-- MySQL with migrations & seeders
-- REST API: 54 endpoints across 10 resource controllers
-- Nested Set (alex&tau) for categories
-- Spatie Media Library for images
-- CartService with guest cart merge
-- Coupons (fixed & percentage)
-- Product variants support
+### Бэкенд (Laravel)
+- Laravel 13 с Sanctum Bearer-token аутентификацией
+- MySQL с миграциями и сидерами
+- REST API: 54 эндпоинта, 10 контроллеров ресурсов
+- Nested Set (alex&tau) для категорий
+- Spatie Media Library для изображений
+- CartService с объединением гостевой корзины
+- Купоны (фиксированные и процентные)
+- Поддержка вариантов товаров
 
-### Frontend (Next.js)
-- Next.js 16 App Router with TypeScript
+### Фронтенд (Next.js)
+- Next.js 16 App Router с TypeScript
 - Tailwind CSS 4
-- Zustand for state management
-- Axios with auth/session interceptors
-- Guest cart via localStorage session ID
-- Admin panel with full CRUD & analytics
-- Responsive design
+- Zustand для управления состоянием
+- Axios с перехватчиками авторизации/сессий
+- Гостевая корзина через session ID в localStorage
+- Админ-панель с полным CRUD и аналитикой
+- Адаптивный дизайн
 
 ## API Endpoints
 
-All routes are prefixed with `/api/v1`:
+Все маршруты имеют префикс `/api/v1`:
 
-- **Auth** – login, register, logout, profile
-- **Catalog** – categories (tree), products (filtered + paginated), product detail
-- **Cart** – add, update, remove items; apply/remove coupon
-- **Checkout** – place order
-- **Orders** – list, detail
-- **Reviews** – create (purchased only)
-- **Wishlist** – add, remove, list
-- **Admin** – dashboard stats, full CRUD for products/categories/coupons/users, orders management
+- **Auth** – вход, регистрация, выход, профиль
+- **Catalog** – категории (дерево), товары (фильтрация + пагинация), детальная страница товара
+- **Cart** – добавление, обновление, удаление товаров; применение/удаление купона
+- **Checkout** – оформление заказа
+- **Orders** – список заказов, детали
+- **Reviews** – создание отзыва (только купившим)
+- **Wishlist** – добавление, удаление, список
+- **Admin** – статистика дашборда, полный CRUD товаров/категорий/купоны/пользователи, управление заказами
