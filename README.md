@@ -119,7 +119,3 @@ All routes are prefixed with `/api/v1`:
 - **Reviews** – create (purchased only)
 - **Wishlist** – add, remove, list
 - **Admin** – dashboard stats, full CRUD for products/categories/coupons/users, orders management
-
-## License
-
-MIT
